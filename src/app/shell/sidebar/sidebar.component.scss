@@ -1,0 +1,32 @@
+a{
+    color: #00668f !important;
+    font-size: 15px;
+    font-family: Arabic !important;
+    cursor: pointer;
+}
+p{
+    font-size: 15px !important;
+}
+.material-icons{
+    color: #00668f !important;
+
+}
+.fa-sign-out{
+    color: #00668f !important;
+}
+.btn-info{
+    color: white;
+    font-size: 25px;
+    font-family: Arabic ;
+}
+.nav li.active > a {
+    background-color: #dfe6e9 !important;
+    box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(244, 67, 54, 0.4);
+}
+.sidebar .logo-img img {
+    padding: 9px 37px;
+    margin: 0;
+    display: block;
+    position: relative;
+    z-index: 4;
+}

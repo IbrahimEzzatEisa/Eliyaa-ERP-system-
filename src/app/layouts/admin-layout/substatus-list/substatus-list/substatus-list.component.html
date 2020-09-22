@@ -1,0 +1,292 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+
+      <div class="col-md-12">
+        <div class="card card-plain">
+          <div class="card-header card-header-d">
+            <div class="row">
+              <h3 class="card-title">حالات الأشتراك
+                <span> <i class="fa fa-chevron-right "></i>
+                </span>
+                <span>
+                  <i class="fa fa-plus-square"
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                    *ngIf="AddEdit"
+                    (click)="open()"> <a>اضافة حالة أشتراك </a> </i>
+                </span>
+              </h3>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row bg-space pt-3 wow fadeIn"
+              data-wow-duration="1.5s"
+              data-wow-delay="1s">
+              <div class="col-md-7">
+                <div class="input-group bs-default mb-3">
+
+                  <input type="text"
+                    class="form-control"
+                    placeholder="بحث..."
+                    name="search"
+                    [(ngModel)]="term">
+                  <div class="input-group-append ">
+                    <span class="input-group-text  "><i class="fa fa-search"></i>
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead class="">
+                  <th> المسلسل</th>
+                  <th> حالة الأشتراك</th>
+                  <th *ngIf="AddEdit"> الأختيارات</th>
+
+
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="let prop of subscriptionStatusItem  | filter:term |paginate:{itemsPerPage: 10, currentPage:p} ; let i=index">
+                    <td>{{prop.id}}</td>
+                    <td>{{prop.localText}}</td>
+                    <td *ngIf="AddEdit">{{prop.choises}}
+                      <i class="fa  fa-edit "
+                        title="تعديل "
+                        (click)="fill(prop)"
+                        data-toggle="modal"
+                        data-target="#basicExampleModal"></i>
+                      <i class="fa fa-trash "
+                        title="مسح "
+                        (click)="delete(i)"></i>
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-5 col-sm-9 ml-3">
+
+            <nav aria-label="Page navigation  "
+              style=" color: #00668f !important ; font-family: Arabic; ">
+              <pagination-controls (pageChange)="p=$event  "
+                previousLabel="السابق"
+                nextLabel="التالي">
+              </pagination-controls>
+
+
+            </nav>
+          </div>
+          <div class="col-md-4 col-sm-3 form-group ml-auto">
+            <app-table-info *ngIf="subscriptionStatusItem?.length>0 "
+              [page]="filterParams.pageNumber"
+              [pageSize]="filterParams.pageSize"
+              [total]="totalNumberOfItems"
+              [length]="subscriptionStatusItem.length">
+            </app-table-info>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- new Desgin tabel -->
+
+<div class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered "
+    role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+
+        <h5 class="modal-title"
+          id="exampleModalLabel">
+
+          <div class="row">
+
+            <div class="col-md-2 ">
+
+              <button type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+                title="اغلاق">
+                <i class="fa fa-close "></i>
+              </button>
+            </div>
+
+
+            <div class="col-md-6">
+              <a>
+                أضافة حالة </a>
+
+            </div>
+
+
+          </div>
+
+        </h5>
+
+
+      </div>
+      <div class="modal-body">
+        <div class="modal-body">
+          <form>
+            <div class="row">
+
+              <div class="form-group col-md-12 col-sm-12 ">
+                <label> حالة أشتراك
+                </label>
+                <input class="form-control"
+                  name="localText"
+                  [(ngModel)]="subscriptionStatus.localText"
+                  autocomplete="off">
+              </div>
+            </div>
+
+
+
+          </form>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 mx-auto">
+            <button class="btn btn-primary btn-lg btn-block"
+              type="button"
+              (click)="save()">حفظ
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 mx-auto">
+            <button type="button"
+              class="btn bg-cancel btn-block "
+              data-dismiss="modal"
+              (click)="cancel()"> إلغاء </button>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+<!--end add-->
+<!-- Edit Modal-->
+<div class="modal fade"
+  id="basicExampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered"
+    role="document">
+
+    <div class="modal-content">
+      <div class="modal-header">
+
+
+        <h5 class="modal-title"
+          id="exampleModalLabel">
+
+          <div class="row">
+
+            <div class="col-md-2 ">
+
+              <button type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+                title="اغلاق">
+                <i class="fa fa-close "></i>
+              </button>
+            </div>
+
+
+            <div class="col-md-6">
+              <a>
+                تعديل حالة </a>
+
+            </div>
+
+
+          </div>
+
+        </h5>
+
+
+      </div>
+      <div class="modal-body">
+        <div class="modal-body">
+          <form name="form"
+            #form="ngForm">
+
+            <div class="row">
+
+              <div class="form-group col-md-12 col-sm-12 ">
+                <label> المسلسل
+                </label>
+                <input class="form-control"
+                  name="id"
+                  [(ngModel)]="subscriptionStatus.id"
+                  readonly />
+              </div>
+            </div>
+
+            <div class="row">
+
+              <div class="form-group col-md-12 col-sm-12 ">
+                <label> نوع الأشتراك
+                </label>
+                <input class="form-control"
+                  name="localText"
+                  [(ngModel)]="subscriptionStatus.localText"
+                  autocomplete="off">
+              </div>
+            </div>
+
+
+            <div>
+              <div class="row">
+                <div class="col-md-12 col-sm-12 mx-auto">
+                  <button class="btn btn-primary btn-lg btn-block"
+                    type="button"
+                    (click)="saveupdate()">تعديل
+                  </button>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 col-sm-12 mx-auto">
+                  <button type="button"
+                    class="btn bg-cancel btn-block "
+                    data-dismiss="modal"
+                    (click)="cancel()"> ألغاء </button>
+
+                </div>
+              </div>
+
+
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- End Of Modal-->

@@ -1,0 +1,55 @@
+<div class="logo">
+        <div class="logo" >
+            <img src="./../../../assets/img/Logo-2.png" style="   width: 114px !important;
+            top: 25px;
+            margin-left: 70px;
+"/>
+        </div>
+      
+</div>
+<div class="sidebar-wrapper">
+  <div *ngIf="isMobileMenu()">
+
+    <ul class="nav navbar-nav nav-mobile-menu">
+    
+
+ 
+    </ul>
+  </div>
+    <ul class="nav">
+        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}} nav-item">
+            <a class="nav-link" [routerLink]="[menuItem.path]">
+                <i class="material-icons">{{menuItem.icon}}</i>
+                <p>{{menuItem.title}}</p>
+
+                   
+            
+            </a>
+
+     
+        </li>
+<li routerLinkActive="active" *ngIf="AddEdit" >
+  <a   class="nav-link" [routerLink]="['/pages/user']">
+    <i class="fa fa-user" style="color: #00668f;"></i>
+    <p> المستخدمين</p>
+
+       
+
+</a>
+</li>
+
+<li  >
+  <a   (click)="logout()">
+    <p style="margin-left: 15px !important;">  <span>    <i class="fas fa-sign-out-alt" style="color: #00668f;"></i>
+    </span>تسجيل الخروج</p>
+
+       
+
+</a>
+</li>
+
+  
+    
+
+    </ul>
+</div>

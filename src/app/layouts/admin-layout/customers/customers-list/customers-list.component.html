@@ -1,0 +1,2179 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm12">
+        <div class="card">
+          <div class="card-header card-header-d">
+            <div class="row">
+              <h3 class="card-title">
+                <span> <a class="card-d"> العملاء</a><i class="fa fa-chevron-right "></i>
+                </span>
+                <span>
+                  <i class="fa fa-plus-square"
+                    *ngIf="AddEdit"
+                    data-toggle="modal"
+                    data-target="#exampleModal1"
+                    (click)="reset()"> <a>اضافة عميل </a> </i>
+                </span>
+
+                <a> <span> <i class="fa fa-table"></i></span> البيانات المعروضه حاليا : <span style="color: #00668f;">
+                    {{ datatable}}</span> </a>
+              </h3>
+            </div>
+          </div>
+
+          <div class="card-body">
+
+            <div class="row bg-space pt-3  ">
+              <div class="col-md-5">
+
+                <div class="input-group bs-default mb-3">
+
+                  <input type="text"
+                    class="form-control"
+                    placeholder="بحث..."
+                    name="search"
+                    (ngModelChange)="MainSearch()"
+                    [(ngModel)]="term">
+                  <span class="input-group-text  "><i class=" fa fa-times"
+                      title="مسح البحث"
+                      (click)="clear()" 
+                    
+                      *ngIf="mainSearch"></i>
+                  </span>
+                  <div class="input-group-append ">
+
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="col-md-7">
+                <button type="button"
+                  class="btn btn-danger"
+                  (click)="resettabel()">العملاء</button>
+                <button type="button"
+                  class="btn btn-warning"
+                  (click)="filter()">قائمة التسليم</button>
+              
+                  <button class="btn btn-info   dropdown-toggle"
+                  type="button"
+                  id="dropdownMenuButton"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+              
+                  aria-expanded="false"
+                  >حفظ
+                </button>
+                <div class="dropdown-menu download"
+                aria-labelledby="dropdownMenuButton">  
+ 
+                <a style="color: #00668f;"
+                  class="dropdown-item infoText"
+                  (click)="print()"> PDF</a>
+
+                  <a style="color: #00668f;"
+                  class="dropdown-item infoText"
+                  (click)="Excel()"> EXCEL</a>
+
+              </div>
+                
+
+            
+                <!-- Button trigger modal -->
+                <button type="button"
+                  class="btn btn-primary"
+                  data-toggle="modal"
+                  data-target="#exampleModal"> أعدادات
+                </button>
+
+
+
+              </div>
+              <div class="col-md-2 ml-0 pl-0 mb-2"
+                hidden>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="dropdown">
+                      <button class="btn bg-title dropdown-toggle"
+                        type="button"
+                        id="dropdownMenuButton"
+                        data-toggle="dropdown"
+                        style="color: white; background-color: #00668f;">
+                        أعدادات </button>
+                      <div class="dropdown-menu  text-dark bg-title"
+                        aria-labelledby="dropdownMenuButton">
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="ContractNo"
+                              [(ngModel)]="ContractNo">
+                            <label class="form-check-label"
+                              for="ContractNo"> رقم العقد</label>
+                          </div>
+                        </div>
+
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="Name"
+                              [(ngModel)]="Name">
+                            <label class="form-check-label"
+                              for="Name"> أسم المشترك </label>
+                          </div>
+                        </div>
+
+
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="PhoneNumber1"
+                              [(ngModel)]="PhoneNumber1">
+                            <label class="form-check-label"
+                              for="PhoneNumber1"> رقم الجوال ١ </label>
+                          </div>
+                        </div>
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="PhoneNumber2"
+                              [(ngModel)]="PhoneNumber2">
+                            <label class="form-check-label"
+                              for="PhoneNumber2"> رقم الجوال ٢ </label>
+                          </div>
+                        </div>
+
+
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="PhoneNumber3"
+                              [(ngModel)]="PhoneNumber3">
+                            <label class="form-check-label"
+                              for="PhoneNumber3"> رقم الجوال ٣ </label>
+                          </div>
+                        </div>
+
+
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="Address"
+                              [(ngModel)]="Address">
+                            <label class="form-check-label"
+                              for="Address"> العنوان </label>
+                          </div>
+                        </div>
+
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="BottleBalances"
+                              [(ngModel)]="BottleBalances">
+                            <label class="form-check-label"
+                              for="BottleBalances"> رصيد العبوات </label>
+                          </div>
+                        </div>
+
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="BottleNumbers"
+                              [(ngModel)]="BottleNumbers">
+                            <label class="form-check-label"
+                              for="BottleNumbers"> عدد العبوات </label>
+                          </div>
+                        </div>
+
+
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="city"
+                              [(ngModel)]="city">
+                            <label class="form-check-label"
+                              for="city"> المدينة </label>
+                          </div>
+                        </div>
+
+
+
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="CustomerType"
+                              [(ngModel)]="CustomerType">
+                            <label class="form-check-label"
+                              for="CustomerType"> نوع العميل </label>
+                          </div>
+                        </div>
+
+
+
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="Due"
+                              [(ngModel)]="Due">
+                            <label class="form-check-label"
+                              for="Due"> المديونية </label>
+                          </div>
+                        </div>
+
+
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="ReceiptNumbers"
+                              [(ngModel)]="ReceiptNumbers">
+                            <label class="form-check-label"
+                              for="ReceiptNumbers"> عدد الأستلامات </label>
+                          </div>
+                        </div>
+
+
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="SubscriptionStatu"
+                              [(ngModel)]="SubscriptionStatu">
+                            <label class="form-check-label"
+                              for="SubscriptionStatu"> حالة الأشتراك </label>
+                          </div>
+                        </div>
+
+
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="SubscriptionType"
+                              [(ngModel)]="SubscriptionType">
+                            <label class="form-check-label"
+                              for="SubscriptionType"> نوع الأشتراك </label>
+                          </div>
+                        </div>
+
+
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="Note"
+                              [(ngModel)]="Note">
+                            <label class="form-check-label"
+                              for="Note"> ملاحظات </label>
+                          </div>
+                        </div>
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="SubscriptionNumbers"
+                              [(ngModel)]="SubscriptionNumbers">
+                            <label class="form-check-label"
+                              for="SubscriptionNumbers"> عدد الأشتراكات </label>
+                          </div>
+                        </div>
+
+
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="LastReceipt"
+                              [(ngModel)]="LastReceipt">
+                            <label class="form-check-label"
+                              for="LastReceipt"> أخر أستلام </label>
+                          </div>
+                        </div>
+
+
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="Price"
+                              [(ngModel)]="Price">
+                            <label class="form-check-label"
+                              for="Price"> السعر </label>
+                          </div>
+                        </div>
+
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="rate"
+                              [(ngModel)]="rate">
+                            <label class="form-check-label"
+                              for="rate"> نسبة الأستلام </label>
+                          </div>
+                        </div>
+
+
+
+
+
+
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="SubscriptionMonthNumbers"
+                              [(ngModel)]="SubscriptionMonthNumbers">
+                            <label class="form-check-label"
+                              for="SubscriptionMonthNumbers"> شهر الأشتراك </label>
+                          </div>
+                        </div>
+                        <div class="row ">
+                          <div class="form-check">
+                            <input type="checkbox"
+                              class="form-check-input"
+                              id="SubscriptionDate"
+                              [(ngModel)]="SubscriptionDate">
+                            <label class="form-check-label"
+                              for="SubscriptionDate"> تاريخ الأشتراك </label>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+
+            </div>
+
+
+            <div class="row bg-space pt-3 ">
+
+              <div class="col-md-3">
+                <label> المدينة</label>
+                <i class=" fa fa-times"
+                  title="مسح البحث"
+                  (click)="clearCity()" *ngIf="iconclearCity"></i>
+
+                <div class="dropdown">
+                  <button class="btn btn-secondary btn-block dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                    {{CITY}}
+                  </button>
+
+                  <div class="dropdown-menu sea"
+                    aria-labelledby="dropdownMenuButton">
+                    <input type="text"
+                      class="form-control"
+                      placeholder="بحث..."
+                      name="search"
+                      [(ngModel)]="term">
+                    <div class="input-group-append ">
+
+                    </div>
+
+                    <a style="color: #00668f;"
+                      class="dropdown-item"
+                      *ngFor="let item of City | filter:term ; let i=index"
+                      (click)="getFilterCity(item)">{{item.localText}}</a>
+
+
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="col-md-3">
+                <label> نوع العميل</label>
+                <i class=" fa fa-times"
+                  title="مسح البحث"
+                  (click)="clearCustomer()" *ngIf="iconclearCustomer"></i>
+
+                <div class="dropdown">
+                  <button class="btn btn-secondary btn-block dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                    {{ CUSTOMERTYPES}}
+                  </button>
+
+                  <div class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton">
+                    <input type="text"
+                      class="form-control"
+                      placeholder="بحث..."
+                      name="search"
+                      [(ngModel)]="term">
+                    <div class="input-group-append ">
+
+                    </div>
+
+                    <a style="color: #00668f;"
+                      class="dropdown-item"
+                      *ngFor="let item of customerTypesList | filter:term ; let i=index"
+                      (click)="getFilterCustomerstypes(item)">{{item.localText}}</a>
+
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="col-md-3">
+                <label> حالة الأشتراك</label>
+                <i class=" fa fa-times"
+                  title="مسح البحث"
+                  (click)="clearSubS() " *ngIf="iconclearSubS"></i>
+
+                <div class="dropdown">
+                  <button class="btn btn-secondary btn-block dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                    {{SUBS}}
+                  </button>
+
+                  <div class="dropdown-menu"
+                    aria-labelledby="dropdownMenuButton">
+                    <input type="text"
+                      class="form-control"
+                      placeholder="بحث..."
+                      name="search"
+                      [(ngModel)]="term">
+                    <div class="input-group-append ">
+
+                    </div>
+
+                    <a style="color: #00668f;"
+                      class="dropdown-item"
+                      *ngFor="let item of SubscriptionStatus | filter:term ; let i=index"
+                      (click)="getFilterSubscStatus(item)">{{item.localText}}</a>
+
+
+                  </div>
+                </div>
+              </div>
+
+
+
+              <div class="col-md-3">
+                <label> نوع الأشتراك</label>
+                <i class=" fa fa-times"
+                  title="مسح البحث"
+                  (click)="clearSubT()" *ngIf="iconclearSubT"></i>
+
+                <div class="dropdown">
+                  <button class="btn btn-secondary btn-block dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                    {{SUBT}}
+                  </button>
+
+                  <div class="dropdown-menu "
+                    aria-labelledby="dropdownMenuButton">
+                    <input type="text"
+                      class="form-control"
+                      placeholder="بحث..."
+                      name="search"
+                      [(ngModel)]="term">
+                    <div class="input-group-append ">
+
+                    </div>
+
+                    <a style="color: #00668f;"
+                      class="dropdown-item"
+                      *ngFor="let item of SubscriptionTypes | filter:term ; let i=index"
+                      (click)="getFilterSubsctypes(item)">{{item.localText}}</a>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+            <div class="table-responsive">
+              <table class="table"
+                id="table"
+                #table>
+                <thead class=" text-primary">
+                  <th> # </th>
+                  <th *ngIf="ContractNo "> #العقد </th>
+
+                  <th *ngIf="Name == true"> المشترك </th>
+                  <th *ngIf="PhoneNumber1 == true"> #الجوال ١ </th>
+                  <th *ngIf="PhoneNumber2 == true"> #الجوال٢ </th>
+                  <th *ngIf="PhoneNumber3 == true"> #الجوال٣ </th>
+                  <th *ngIf="Address == true"> العنوان </th>
+
+
+                  <th *ngIf="BottleBalances == true"> رصيد العبوات</th>
+                  <th *ngIf="BottleNumbers == true">#العبوات</th>
+
+
+                  <th *ngIf="city == true"> المدينة
+
+                  </th>
+
+                  <th *ngIf="CustomerType == true"> نوع العميل
+
+                  </th>
+                  <th *ngIf="Due == true"> المديونية</th>
+                  <th *ngIf="ReceiptNumbers == true"> #الأستلامات</th>
+                  <th *ngIf="SubscriptionStatu == true"> حالة الأشتراك
+
+                  </th>
+                  <th *ngIf="SubscriptionType == true"> نوع الأشتراك
+
+
+
+                  </th>
+
+
+                  <th *ngIf="Note == true"> ملاحظات</th>
+                  <th *ngIf="LastReceipt == true"> أخر أستلام</th>
+                  <th *ngIf="Price == true"> السعر</th>
+                  <th *ngIf="rate == true"> نسبة الأستلام</th>
+                  <th *ngIf="SubscriptionNumbers == true">#الأشتراكات </th>
+
+                  <th *ngIf="SubscriptionMonthNumbers == true"> شهر الأشتراك </th>
+                  <th *ngIf="SubscriptionDate == true"> تاريخ الأشتراك </th>
+                  <th *ngIf="AddEdit"> الأختيارات </th>
+
+
+
+
+
+
+                </thead>
+                <tbody>
+                  <tr (click)="fill(prop)"
+                    data-toggle="modal"
+                    data-target="#basicExampleModal"
+                    *ngFor="let prop of customerItem | filter:term |paginate:{itemsPerPage: 10, currentPage:p}   ; let i=index">
+                    <td>{{prop.id}}</td>
+                    <td *ngIf="ContractNo "> {{prop.contractNo}}</td>
+                    <td *ngIf="Name == true"> {{prop.name}}</td>
+                    <td *ngIf="PhoneNumber1 == true"> {{prop.phoneNumber1}}</td>
+                    <td *ngIf="PhoneNumber2 == true"> {{prop.phoneNumber2}}</td>
+                    <td *ngIf="PhoneNumber3 == true"> {{prop.phoneNumber3}}</td>
+                    <td *ngIf="Address == true"> {{prop.address}}</td>
+                    <td *ngIf="BottleBalances == true"> {{prop.bottleBalances}}</td>
+                    <td *ngIf="BottleNumbers == true"> {{prop.bottleNumbers}}</td>
+                    <td *ngIf="city == true"> {{prop.city  }}</td>
+                    <td *ngIf="CustomerType == true"> {{prop.customerType}}</td>
+                    <td *ngIf="Due == true"> {{prop.due   | currency}}</td>
+
+                    <td *ngIf="ReceiptNumbers == true"> {{prop.receiptNumbers}}</td>
+                    <td *ngIf="SubscriptionStatu == true"> {{prop.subscriptionStatus  }}</td>
+                    <td *ngIf="SubscriptionType == true"> {{prop.subscriptionType  }}</td>
+                    <td *ngIf="Note == true"> {{prop.note}}</td>
+                    <td *ngIf="LastReceipt == true"> {{prop.lastReceipt |appDate}}</td>
+                    <td *ngIf="Price == true"> {{prop.price  | currency}}</td>
+                    <td *ngIf="rate == true"> {{prop.rate  | percent}}</td>
+                    <td *ngIf="SubscriptionNumbers == true"> {{prop.subscriptionNumbers}}</td>
+                    <td *ngIf="SubscriptionMonthNumbers == true"> {{prop.subscriptionMonthNumbers}}</td>
+                    <td *ngIf="SubscriptionDate == true"> {{prop.subscriptionDate |appDate}}</td>
+
+                    <td *ngIf="AddEdit">{{prop.choises}}
+                      <i class="fa  fa-edit "
+                        title="تعديل "
+                        (click)="fill(prop)"
+                        data-toggle="modal"
+                        data-target="#basicExampleModal"></i>
+                      <i class="fa fa-trash "
+                        title="مسح "
+                        (click)="delete(i)"></i>
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row ">
+          <div class="col-md-7 col-sm-9 ml-3">
+
+            <nav aria-label="Page navigation  "
+              style=" color: #00668f !important ; font-family: Arabic; ">
+              <pagination-controls (pageChange)="p=$event  "
+                previousLabel="السابق"
+                nextLabel="التالي">
+              </pagination-controls>
+
+
+            </nav>
+          </div>
+          <div class="col-md-4 col-sm-3 form-group ml-auto">
+            <app-table-info *ngIf="customerItem?.length>0 "
+              [page]="filterParams.pageNumber"
+              [pageSize]="filterParams.pageSize"
+              [total]="totalNumberOfItems"
+              [length]="customerItem.length">
+            </app-table-info>
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog"
+    role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"
+          id="exampleModalLabel">أعدادات الجدول </h5>
+
+      </div>
+      <div class="modal-body">
+        <hr class="style13">
+
+        <div class="row ">
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="ContractNo"
+              [(ngModel)]="ContractNo">
+            <label class="form-check-label"
+              for="ContractNo"> رقم العقد</label>
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="Name"
+              [(ngModel)]="Name">
+            <label class="form-check-label"
+              for="Name"> أسم المشترك </label>
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="PhoneNumber1"
+              [(ngModel)]="PhoneNumber1">
+            <label class="form-check-label"
+              for="PhoneNumber1"> رقم الجوال ١ </label>
+          </div>
+        </div>
+
+
+        <hr class="style13">
+
+
+        <div class="row ">
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="PhoneNumber2"
+              [(ngModel)]="PhoneNumber2">
+            <label class="form-check-label"
+              for="PhoneNumber2"> رقم الجوال ٢ </label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="PhoneNumber3"
+              [(ngModel)]="PhoneNumber3">
+            <label class="form-check-label"
+              for="PhoneNumber3"> رقم الجوال ٣ </label>
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="Address"
+              [(ngModel)]="Address">
+            <label class="form-check-label"
+              for="Address"> العنوان </label>
+          </div>
+        </div>
+
+
+
+        <hr class="style13">
+
+
+        <div class="row ">
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="BottleBalances"
+              [(ngModel)]="BottleBalances">
+            <label class="form-check-label"
+              for="BottleBalances"> رصيد العبوات </label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="BottleNumbers"
+              [(ngModel)]="BottleNumbers">
+            <label class="form-check-label"
+              for="BottleNumbers"> عدد العبوات </label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="city"
+              [(ngModel)]="city">
+            <label class="form-check-label"
+              for="city"> المدينة </label>
+          </div>
+        </div>
+
+        <hr class="style13">
+
+
+        <div class="row ">
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="CustomerType"
+              [(ngModel)]="CustomerType">
+            <label class="form-check-label"
+              for="CustomerType"> نوع العميل </label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="Due"
+              [(ngModel)]="Due">
+            <label class="form-check-label"
+              for="Due"> المديونية </label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="ReceiptNumbers"
+              [(ngModel)]="ReceiptNumbers">
+            <label class="form-check-label"
+              for="ReceiptNumbers"> عدد الأستلامات </label>
+          </div>
+        </div>
+
+
+
+
+
+
+        <hr class="style13">
+
+
+        <div class="row ">
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="SubscriptionStatu"
+              [(ngModel)]="SubscriptionStatu">
+            <label class="form-check-label"
+              for="SubscriptionStatu"> حالة الأشتراك </label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="SubscriptionType"
+              [(ngModel)]="SubscriptionType">
+            <label class="form-check-label"
+              for="SubscriptionType"> نوع الأشتراك </label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="Note"
+              [(ngModel)]="Note">
+            <label class="form-check-label"
+              for="Note"> ملاحظات </label>
+          </div>
+        </div>
+
+
+
+        <hr class="style13">
+
+        <div class="row ">
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="SubscriptionNumbers"
+              [(ngModel)]="SubscriptionNumbers">
+            <label class="form-check-label"
+              for="SubscriptionNumbers"> عدد الأشتراكات </label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="LastReceipt"
+              [(ngModel)]="LastReceipt">
+            <label class="form-check-label"
+              for="LastReceipt"> أخر أستلام </label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="Price"
+              [(ngModel)]="Price">
+            <label class="form-check-label"
+              for="Price"> السعر </label>
+          </div>
+        </div>
+
+
+
+        <hr class="style13">
+
+        <div class="row ">
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="rate"
+              [(ngModel)]="rate">
+            <label class="form-check-label"
+              for="rate"> نسبة الأستلام </label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="SubscriptionMonthNumbers"
+              [(ngModel)]="SubscriptionMonthNumbers">
+            <label class="form-check-label"
+              for="SubscriptionMonthNumbers"> شهر الأشتراك </label>
+          </div>
+          <div class="form-check">
+            <input type="checkbox"
+              class="form-check-input"
+              id="SubscriptionDate"
+              [(ngModel)]="SubscriptionDate">
+            <label class="form-check-label"
+              for="SubscriptionDate"> تاريخ الأشتراك </label>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button"
+          class="btn btn-info btn-lg btn-block"
+          data-dismiss="modal">أغلاق</button>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
+
+
+
+
+<!-- ADD EDIT-->
+<!-- new Desgin tabel -->
+
+<div class="modal fade"
+  id="exampleModal1"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered  modal-xl"
+    role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+
+
+
+        <h5 class="modal-title"
+          id="exampleModalLabel">
+
+          <div class="row">
+
+            <div class="col-md-4 ">
+
+              <button type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+                title="اغلاق">
+                <i class="fa fa-close fa-3x"
+                 ></i>
+              </button>
+            </div>
+
+
+            <div class="col-md-4">
+              <a>
+                أضافة عميل
+
+              </a>
+
+            </div>
+
+            <div class="col-md-4">
+              <a> تقييم العميل :
+                <span style="color: #00668f;"> {{Rate}}</span>
+
+                <i style="color: #ffdd59;"
+                  class="fas fa-star"></i>
+              </a>
+            </div>
+          </div>
+
+        </h5>
+
+
+
+      </div>
+      <div class="modal-body">
+        <div class="modal-body">
+
+          <div class="container">
+
+
+            <ngb-tabset [destroyOnHide]="false">
+
+
+              <ngb-tab>
+                <ng-template ngbTabTitle> <a class="tabTitel"> البيانات الأساسية </a></ng-template>
+                <ng-template ngbTabContent>
+                  <div class="alert alert-d"
+                    role="alert">
+                    <h3> البيانات الأساسية</h3>
+                  </div>
+
+                  <form>
+                    <div class="row">
+
+
+
+                      <div class="col-md-4">
+
+                        <div class="dropdown">
+                          <label style="margin-top: 8px;"> المدينة </label>
+
+                          <button class="btn btn-secondary btn-block dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                            {{cityName}}
+                          </button>
+
+                          <div class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton">
+                            <input type="text"
+                              class="form-control"
+                              placeholder="بحث..."
+                              name="search"
+                              [(ngModel)]="term">
+                            <div class="input-group-append ">
+
+                            </div>
+
+                            <a style="color: #00668f;"
+                              class="dropdown-item"
+                              *ngFor="let item of City | filter:term ; let i=index"
+                              (click)="selectcity(item)">{{item.localText}}</a>
+
+
+                          </div>
+                        </div>
+
+
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label> اسم المشترك </label>
+                          <input type="text"
+                            class="form-control "
+                            [(ngModel)]="customer.name"
+                            #name=ngModel
+                            autocomplete="off"
+                            name="name">
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label> رقم الجوال </label>
+                          <input type="text"
+                            class="form-control "
+                            [(ngModel)]="customer.phoneNumber1"
+                            #phoneNumber1=ngModel
+                            autocomplete="off"
+                            name="phoneNumber1">
+                        </div>
+
+
+
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label> رقم الجوال ٢ </label>
+                          <input type="text"
+                            class="form-control "
+                            [(ngModel)]="customer.phoneNumber2"
+                            #phoneNumber2=ngModel
+                            autocomplete="off"
+                            name="phoneNumber2">
+                        </div>
+
+
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label> رقم الجوال ٣ </label>
+                          <input type="text"
+                            class="form-control "
+                            [(ngModel)]="customer.phoneNumber3"
+                            #phoneNumber3=ngModel
+                            autocomplete="off"
+                            name="phoneNumber3">
+                        </div>
+
+
+                      </div>
+
+
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label> العنوان </label>
+                          <input type="text"
+                            class="form-control "
+                            [(ngModel)]="customer.address"
+                            #address=ngModel
+                            autocomplete="off"
+                            name="address">
+                        </div>
+
+
+
+                      </div>
+
+
+
+                    </div>
+                  </form>
+
+                  <div class="alert alert-d"
+                    role="alert">
+                    <h3> حالة العميل</h3>
+                  </div>
+
+                  <form>
+                    <div class="row">
+
+                      <div class="col-md-4">
+
+
+                        <div class="dropdown">
+                          <label style="margin-top: 8px;"> نوع العميل </label>
+
+                          <button class="btn btn-secondary btn-block dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                            {{ customerTypes}}
+                          </button>
+
+                          <div class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton">
+                            <input type="text"
+                              class="form-control"
+                              placeholder="بحث..."
+                              name="search"
+                              [(ngModel)]="term">
+                            <div class="input-group-append ">
+
+                            </div>
+
+                            <a style="color: #00668f;"
+                              class="dropdown-item"
+                              *ngFor="let item of customerTypesList | filter:term ; let i=index"
+                              (click)="selectcustomertype(item)">{{item.localText}}</a>
+
+                          </div>
+                        </div>
+
+                      </div>
+
+
+
+                      <div class="col-md-4">
+
+
+                        <div class="dropdown">
+                          <label style="margin-top: 8px;"> حالة الآشتراك </label>
+
+                          <button class="btn btn-secondary btn-block dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                            {{value}}
+                          </button>
+
+                          <div class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton">
+                            <input type="text"
+                              class="form-control"
+                              placeholder="بحث..."
+                              name="search"
+                              [(ngModel)]="term">
+                            <div class="input-group-append ">
+
+                            </div>
+
+                            <a style="color: #00668f;"
+                              class="dropdown-item"
+                              *ngFor="let item of SubscriptionStatus | filter:term ; let i=index"
+                              (click)="selectStauts(item)">{{item.localText}}</a>
+
+
+                          </div>
+                        </div>
+
+                      </div>
+
+
+                      <div class="col-md-4 specials">
+                        <br>
+                        <label> تاريخ أخر الأستلام </label>
+                        <div class="form-group ">
+                          <br>
+                          <gregorian-hijri-calendar #Date
+                            [gDate]="customer.lastReceipt  "
+                            [disabled]="false"
+                            [isRequired]="true"
+                            [hidden]="false"
+                            (onSelect)="selectDatelastReceipt($event)">
+                          </gregorian-hijri-calendar>
+
+                          <input class="form-control"
+                            style="margin-top: -52px; z-index: 999;"
+                            [value]="customer.lastReceipt | appDate"
+                            readonly />
+
+                        </div>
+                      </div>
+
+
+
+
+
+                    </div>
+
+
+
+                    <div class="row">
+
+
+
+
+                      <div class="col-md-4 special">
+                        <div class="form-group">
+                          <label> أخر الأستلام قبل</label>
+                          <input type="text"
+                            class="form-control date  disabled-input"
+                            [value]="Days? Days : ''"
+                            readonly />
+                        </div>
+
+                      </div>
+
+
+
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label> الذمم </label>
+                          <input type="text"
+                            class="form-control "
+                            [(ngModel)]="customer.due"
+                            #due=ngModel
+                            name="due">
+                        </div>
+
+
+
+                      </div>
+
+
+
+
+                    </div>
+                  </form>
+
+
+                </ng-template>
+              </ngb-tab>
+
+
+
+              <ngb-tab>
+                <ng-template ngbTabTitle><a class="tabTitel"> بيانات الآشتراك</a></ng-template>
+                <ng-template ngbTabContent>
+
+
+                  <div class="alert alert-d"
+                    role="alert">
+                    <h3> بيانات الآشتراك</h3>
+                  </div>
+                  <form>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label> رقم العقد </label>
+                          <input type="number"
+                            class="form-control "
+                            [(ngModel)]="customer.contractNo"
+                            #contractNo=ngModel
+                            name="contractNo"
+                            autocomplete="off">
+                        </div>
+                      </div>
+
+
+
+                      <div class="col-md-4 "
+                        style="margin-top: 3px;">
+                        <label> تاريخ الأشتراك </label>
+                        <div class="form-group ">
+                          <br>
+                          <gregorian-hijri-calendar #Date
+                            [gDate]="customer.subscriptionDate |appDate"
+                            [disabled]="false"
+                            [isRequired]="true"
+                            [hidden]="false"
+                            (onSelect)="selectDate($event)">
+                          </gregorian-hijri-calendar>
+
+                          <input class="form-control "
+                            style="margin-top: -52px; z-index: 999;"
+                            [value]="customer.subscriptionDate |appDate   "
+                            readonly />
+
+                        </div>
+                      </div>
+
+
+
+                      <div class="col-md-4">
+
+                        <div class="dropdown">
+                          <label style="margin-top: 8px;"> نوع الأشتراك </label>
+
+                          <button class="btn btn-secondary btn-block dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                            {{subscripetypes}}
+                          </button>
+
+                          <div class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton">
+                            <input type="text"
+                              class="form-control"
+                              placeholder="بحث..."
+                              name="search"
+                              [(ngModel)]="term">
+                            <div class="input-group-append ">
+
+                            </div>
+
+                            <a style="color: #00668f;"
+                              class="dropdown-item"
+                              *ngFor="let item of SubscriptionTypes | filter:term ; let i=index"
+                              (click)="selectSubscriptionTypes(item)">{{item.localText}}</a>
+
+
+                          </div>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label> عدد الأشتراكات </label>
+                          <input type="number"
+                            class="form-control "
+                            [(ngModel)]="customer.subscriptionNumbers"
+                            #subscriptionNumbers=ngModel
+                            name="subscriptionNumbers">
+                        </div>
+
+                      </div>
+
+
+
+
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label> العبوات </label>
+                          <input type="number"
+                            class="form-control "
+                            [(ngModel)]="customer.bottleNumbers"
+                            #bottleNumbers=ngModel
+                            name="bottleNumbers">
+                        </div>
+
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label> قيمه الأشتراك </label>
+                          <input type="number"
+                            class="form-control "
+                            [(ngModel)]="customer.price"
+                            #price=ngModel
+                            name="price">
+                        </div>
+
+
+
+                      </div>
+
+
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label> رصيد العبوات </label>
+                          <input type="number"
+                            class="form-control "
+                            [(ngModel)]="customer.bottleBalances"
+                            #bottleBalances=ngModel
+                            name="bottleBalances">
+                        </div>
+
+                      </div>
+
+
+                    </div>
+
+
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label> عدد شهور الأشتراكات </label>
+                          <input type="number"
+                            class="form-control "
+                            [(ngModel)]="customer.subscriptionMonthNumbers"
+                            #subscriptionMonthNumbers=ngModel
+                            name="subscriptionMonthNumbers">
+                        </div>
+
+
+
+                      </div>
+
+
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label> عدد الأستلامات </label>
+                          <input type="number"
+                            class="form-control "
+                            [(ngModel)]="customer.receiptNumbers"
+                            #receiptNumbers=ngModel
+                            name="receiptNumbers"
+                            (ngModelChange)="calrate()">
+                        </div>
+
+                      </div>
+
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label> نسبة الأستلام </label>
+                          <input type="text"
+                            class="form-control "
+                            [value]="Rate ? Rate: ''"
+                            readonly />
+                        </div>
+
+
+
+                      </div>
+
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label> المديونية </label>
+                          <input type="text"
+                            class="form-control "
+                            [(ngModel)]="customer.due"
+                            #due=ngModel
+                            name="due" />
+                        </div>
+
+
+
+                      </div>
+
+
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label> ملاحظات </label>
+                          <textarea class="form-control"
+                            [(ngModel)]="customer.note"
+                            #note=ngModel
+                            name="note"></textarea>
+                        </div>
+
+                      </div>
+                    </div>
+                  </form>
+                </ng-template>
+              </ngb-tab>
+
+            </ngb-tabset>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <div class="row">
+          <div class="col-md-6 col-sm-6 mx-auto">
+
+            <button class="btn btn-danger btn-lg btn-block"
+              type="button"
+              (click)="done()">تم التسليم
+            </button>
+          </div>
+          <div class="col-md-6 col-sm-6 mx-auto">
+
+
+            <button class="btn btn-primary btn-lg btn-block"
+              type="button"
+              (click)="save()">حفظ
+            </button>
+
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 mx-auto">
+            <button type="button"
+              class="btn bg-cancel btn-block "
+              data-dismiss="modal"
+              (click)="cancel()"> إلغاء </button>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+<!--end add-->
+<!-- Edit Modal-->
+<div *ngIf="AddEdit"
+  class="modal fade"
+  id="basicExampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl"
+    role="document">
+
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h5 class="modal-title"
+          id="exampleModalLabel">
+
+          <div class="row">
+
+            <div class="col-md-2 ">
+              <button type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+                title="اغلاق">
+                <i class="fa fa-close fa-3x"
+                ></i>
+              </button>
+            </div>
+
+
+            <div class="col-md-6">
+              <a>
+                تعديل عميل :
+                <span style="color: #00668f;"> {{customerNameDisplay}}</span> </a>
+
+            </div>
+
+            <div class="col-md-4">
+              <a> تقييم العميل :
+                <span style="color: #00668f;"> {{Rate}}</span>
+
+                <i style="color: #ffdd59;"
+                  class="fas fa-star"></i>
+              </a>
+            </div>
+          </div>
+
+        </h5>
+
+
+
+
+
+      </div>
+      <div class="modal-body">
+        <div class="modal-body">
+
+
+          <div class="container">
+
+
+            <ngb-tabset [destroyOnHide]="false">
+
+
+              <ngb-tab>
+                <ng-template ngbTabTitle> <a class="tabTitel"> البيانات الاساسية </a></ng-template>
+                <ng-template ngbTabContent>
+                  <div class="alert alert-d"
+                    role="alert">
+                    <h3> البيانات الاساسية</h3>
+                  </div>
+                  <form>
+                    <div class="row">
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label> المسلسل </label>
+                          <input type="number"
+                            class="form-control disabled-input"
+                            [(ngModel)]="customer.id"
+                            #id=ngModel
+                            type="number"
+                            name="id"
+                            readonly />
+                        </div>
+
+
+
+                      </div>
+                      <div class="col-md-4">
+
+                        <div class="dropdown">
+                          <label style="margin-top: 8px;"> المدينة </label>
+
+                          <button class="btn btn-secondary btn-block dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                            {{cityName}}
+                          </button>
+
+                          <div class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton">
+                            <input type="text"
+                              class="form-control"
+                              placeholder="بحث..."
+                              name="search"
+                              [(ngModel)]="term">
+                            <div class="input-group-append ">
+
+                            </div>
+
+                            <a style="color: #00668f;"
+                              class="dropdown-item"
+                              *ngFor="let item of City | filter:term ; let i=index"
+                              (click)="selectcity(item)">{{item.localText}}</a>
+
+
+                          </div>
+                        </div>
+
+
+                      </div>
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label> اسم المشترك </label>
+                          <input type="text"
+                            class="form-control "
+                            [(ngModel)]="customer.name"
+                            #name=ngModel
+                            autocomplete="off"
+                            name="name">
+
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label> رقم الجوال </label>
+                          <input type="text"
+                            class="form-control "
+                            [(ngModel)]="customer.phoneNumber1"
+                            #phoneNumber1=ngModel
+                            autocomplete="off"
+                            name="phoneNumber1">
+                        </div>
+
+
+
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label> رقم الجوال ٢ </label>
+                          <input type="text"
+                            class="form-control "
+                            [(ngModel)]="customer.phoneNumber2"
+                            #phoneNumber2=ngModel
+                            autocomplete="off"
+                            name="phoneNumber2">
+                        </div>
+
+
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label> رقم الجوال ٣ </label>
+                          <input type="text"
+                            class="form-control "
+                            [(ngModel)]="customer.phoneNumber3"
+                            #phoneNumber3=ngModel
+                            autocomplete="off"
+                            name="phoneNumber3">
+                        </div>
+
+
+                      </div>
+
+
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label> العنوان </label>
+                          <input type="text"
+                            class="form-control "
+                            [(ngModel)]="customer.address"
+                            #address=ngModel
+                            autocomplete="off"
+                            name="address">
+                        </div>
+
+
+
+                      </div>
+
+
+
+                    </div>
+                  </form>
+                  <div class="alert alert-d"
+                    role="alert">
+                    <h3> حالة العميل</h3>
+                  </div>
+
+                  <form>
+                    <div class="row">
+
+                      <div class="col-md-4">
+
+
+                        <div class="dropdown">
+                          <label style="margin-top: 8px;"> نوع العميل </label>
+
+                          <button class="btn btn-secondary btn-block dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                            {{ customerTypes}}
+                          </button>
+
+                          <div class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton">
+                            <input type="text"
+                              class="form-control"
+                              placeholder="بحث..."
+                              name="search"
+                              [(ngModel)]="term">
+                            <div class="input-group-append ">
+
+                            </div>
+
+                            <a style="color: #00668f;"
+                              class="dropdown-item"
+                              *ngFor="let item of customerTypesList | filter:term ; let i=index"
+                              (click)="selectcustomertype(item)">{{item.localText}}</a>
+
+                          </div>
+                        </div>
+
+                      </div>
+
+
+
+                      <div class="col-md-4">
+
+
+                        <div class="dropdown">
+                          <label style="margin-top: 8px;"> حالة الآشتراك </label>
+
+                          <button class="btn btn-secondary btn-block dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                            {{value}}
+                          </button>
+
+                          <div class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton">
+                            <input type="text"
+                              class="form-control"
+                              placeholder="بحث..."
+                              name="search"
+                              [(ngModel)]="term">
+                            <div class="input-group-append ">
+
+                            </div>
+
+                            <a style="color: #00668f;"
+                              class="dropdown-item"
+                              *ngFor="let item of SubscriptionStatus | filter:term ; let i=index"
+                              (click)="selectStauts(item)">{{item.localText}}</a>
+
+
+                          </div>
+                        </div>
+
+                      </div>
+
+
+                      <div class="col-md-4 specials">
+                        <br>
+                        <label> تاريخ أخر الأستلام </label>
+                        <div class="form-group ">
+                          <br>
+                          <gregorian-hijri-calendar #Date
+                            [gDate]="customer.lastReceipt "
+                            [disabled]="false"
+                            [isRequired]="true"
+                            [hidden]="false"
+                            (onSelect)="selectDatelastReceipt($event)">
+                          </gregorian-hijri-calendar>
+
+                          <input class="form-control"
+                            style="margin-top: -52px; z-index: 999;"
+                            [value]="customer.lastReceipt | appDate"
+                            readonly />
+
+
+
+
+                        </div>
+                      </div>
+
+
+
+
+
+                    </div>
+
+
+
+                    <div class="row">
+
+
+
+
+                      <div class="col-md-4 special">
+                        <div class="form-group">
+                          <label> أخر الأستلام قبل</label>
+                          <input type="text"
+                            class="form-control date  disabled-input"
+                            [value]="Days? Days : ''"
+                            readonly />
+                        </div>
+
+                      </div>
+
+
+
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label> الذمم </label>
+                          <input type="text"
+                            class="form-control "
+                            [(ngModel)]="customer.due"
+                            #due=ngModel
+                            name="due">
+                        </div>
+
+
+
+                      </div>
+
+
+
+
+                    </div>
+                  </form>
+
+
+                </ng-template>
+              </ngb-tab>
+
+
+
+              <ngb-tab>
+                <ng-template ngbTabTitle><a class="tabTitel"> بيانات الآشتراك</a></ng-template>
+                <ng-template ngbTabContent>
+
+
+                  <div class="alert alert-d"
+                    role="alert">
+                    <h3> بيانات الآشتراك</h3>
+                  </div>
+                  <form>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label> رقم العقد </label>
+                          <input type="number"
+                            class="form-control "
+                            [(ngModel)]="customer.contractNo"
+                            #contractNo=ngModel
+                            name="contractNo"
+                            autocomplete="off">
+                        </div>
+                      </div>
+
+
+                      <div class="col-md-4 "
+                        style="margin-top: 3px;">
+                        <label> تاريخ الآشتراك </label>
+                        <div class="form-group ">
+                          <br>
+                          <gregorian-hijri-calendar #Date
+                            [gDate]="customer.subscriptionDate |appDate"
+                            [disabled]="false"
+                            [isRequired]="true"
+                            [hidden]="false"
+                            (onSelect)="selectDate($event)">
+                          </gregorian-hijri-calendar>
+
+                          <input class="form-control"
+                            style="margin-top: -52px; z-index: 999;"
+                            [value]="customer.subscriptionDate |appDate   "
+                            readonly />
+
+                        </div>
+                      </div>
+
+
+                      <div class="col-md-4">
+
+                        <div class="dropdown">
+                          <label style="margin-top: 8px;"> نوع الأشتراك </label>
+
+                          <button class="btn btn-secondary btn-block dropdown-toggle"
+                            type="button"
+                            id="dropdownMenuButton"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                            {{subscripetypes}}
+                          </button>
+
+                          <div class="dropdown-menu"
+                            aria-labelledby="dropdownMenuButton">
+                            <input type="text"
+                              class="form-control"
+                              placeholder="بحث..."
+                              name="search"
+                              [(ngModel)]="term">
+                            <div class="input-group-append ">
+
+                            </div>
+
+                            <a style="color: #00668f;"
+                              class="dropdown-item"
+                              *ngFor="let item of SubscriptionTypes | filter:term ; let i=index"
+                              (click)="selectSubscriptionTypes(item)">{{item.localText}}</a>
+
+
+                          </div>
+                        </div>
+
+
+                      </div>
+
+                    </div>
+
+
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label> عدد الأشتراكات </label>
+                          <input type="number"
+                            class="form-control "
+                            [(ngModel)]="customer.subscriptionNumbers"
+                            #subscriptionNumbers=ngModel
+                            name="subscriptionNumbers">
+                        </div>
+
+                      </div>
+
+
+
+
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label> العبوات </label>
+                          <input type="number"
+                            class="form-control "
+                            [(ngModel)]="customer.bottleNumbers"
+                            #bottleNumbers=ngModel
+                            name="bottleNumbers">
+                        </div>
+
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label> قيمه الأشتراك </label>
+                          <input type="number"
+                            class="form-control "
+                            [(ngModel)]="customer.price"
+                            #price=ngModel
+                            name="price">
+                        </div>
+
+
+
+                      </div>
+
+
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label> رصيد العبوات </label>
+                          <input type="number"
+                            class="form-control "
+                            [(ngModel)]="customer.bottleBalances"
+                            #bottleBalances=ngModel
+                            name="bottleBalances">
+                        </div>
+
+                      </div>
+
+
+                    </div>
+
+
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label> عدد شهور الأشتراكات </label>
+                          <input type="number"
+                            class="form-control "
+                            [(ngModel)]="customer.subscriptionMonthNumbers"
+                            #subscriptionMonthNumbers=ngModel
+                            name="subscriptionMonthNumbers">
+                        </div>
+
+
+
+                      </div>
+
+
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label> عدد الأستلامات </label>
+                          <input type="number"
+                            class="form-control "
+                            [(ngModel)]="customer.receiptNumbers"
+                            #receiptNumbers=ngModel
+                            name="receiptNumbers"
+                            (ngModelChange)="calrate()">
+                        </div>
+
+                      </div>
+
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label> نسبة الأستلام </label>
+                          <input type="text"
+                            class="form-control "
+                            [value]="Rate ? Rate: ''"
+                            readonly />
+                        </div>
+
+
+
+                      </div>
+
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label> المديونية </label>
+                          <input type="text"
+                            class="form-control "
+                            [(ngModel)]="customer.due"
+                            #due=ngModel
+                            name="due" />
+                        </div>
+
+
+
+                      </div>
+
+
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label> ملاحظات </label>
+                          <textarea class="form-control"
+                            [(ngModel)]="customer.note"
+                            #note=ngModel
+                            name="note"></textarea>
+                        </div>
+
+                      </div>
+                    </div>
+                  </form>
+                </ng-template>
+              </ngb-tab>
+
+            </ngb-tabset>
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-6 mx-auto">
+
+            <button class="btn btn-danger btn-lg btn-block"
+              type="button"
+              (click)="done()">تم التسليم
+            </button>
+          </div>
+          <div class="col-md-6 col-sm-6 mx-auto">
+
+            <button class="btn btn-primary btn-lg btn-block"
+              type="button"
+              (click)="saveupdate()">حفظ
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 col-sm-12 mx-auto">
+            <button type="button"
+              class="btn bg-cancel btn-block "
+              data-dismiss="modal"
+              (click)="cancel()"> إلغاء </button>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <!-- End Of Modal-->

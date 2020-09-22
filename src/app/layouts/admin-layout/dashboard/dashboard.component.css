@@ -1,0 +1,100 @@
+.card-title{
+    font-family: Arabic;
+
+}
+.card-category{
+    font-family: NoirStd;
+
+}
+.english{
+    font-family: NoirStd;
+    color: #15789f !important;
+
+}
+ .logout{
+    background-color: #15789f !important;
+    
+}
+.danger{
+    background-color: #60aed4 !important;
+
+
+}
+.noofbo{
+    color: #60aed4 !important;
+
+}
+.book{
+    background-color: #2b347b !important;
+
+
+}
+.titlebook{
+    color: #2b347b !important;
+
+}
+.event{
+    background-color: #8cc640 !important;
+
+
+}
+.eventTitle{
+    color: #8cc640 !important;
+
+}
+.local{
+    background-color: #38ada9 !important;
+
+}
+.localTitle{
+    color: #38ada9 !important;
+
+}
+
+
+.day{
+background-color: #82ccdd !important;
+}
+.dayTitle{
+color: #82ccdd !important;
+
+}
+
+.month{
+color: #60a3bc !important;
+}
+.monthS{
+    background-color: #60a3bc !important;
+
+}
+.new{
+    background-color: #3c6382 !important;
+
+}
+.newC{
+    color: #3c6382 !important;
+
+}
+.Total{
+background-color: #0a3d62 !important;
+}
+.total{
+    color: #0a3d62 !important;
+}
+
+.out{
+    color: #6a89cc !important;
+
+}
+.outC{
+    background-color: #6a89cc !important;
+
+}
+.number {
+    font-family: NoirStd;
+color: white !important;
+
+}
+.card-header-infototal{
+
+}
